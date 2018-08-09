@@ -1,6 +1,5 @@
 # wageCalculator.py
-def convertWageMtoW(mWage):
-    wageGap = 0.182
+def convertWageMtoW(mWage, wageGap):
     ratio = 1-wageGap
     return ratio*mWage
 
@@ -39,6 +38,10 @@ def main():
     # Checks for invalid country
     if countryRate == 0:
         quit
-
+    
+    maleWage = input("Please enter male wage: ")
+    
+    femWage = convertWageMtoW(maleWage, countryRate)
+    print("The female wage in that country is " + femWage)
 
 if __name__ == "__main__": main()
