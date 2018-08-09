@@ -5,37 +5,40 @@ def convertWageMtoW(mWage):
     return ratio*mWage
 
 
-def approximatelyEqual(expected, val, epsilon):
-    ''' Returns true if expected and val are equal within a difference of
-        epsilon '''
-    diff = abs(expected-val)
-    return diff < epsilon
+def countryPick(country):
+    if   country == "A":
+        return .1817
+    elif country == "B":
+           return .1649
+    elif country == "C":
+        return .1664
+    elif country == "D":
+        return .0155
+    elif country == "E":
+        return .3462
+    elif country == "F":
+        return .0987
+    else:
+        print("Please Pick A Country")
+        return 0
+
 
 def main():
-    epsilon = 0.001
-    print("Testing convertMtoW(100)...")
-    ans = convertWageMtoW(100)
-    expected = 81.8
-    # Make sure 
-    if approximatelyEqual(ans, expected, epsilon):
-        print("Correct!")
-    else:
-        print("Incorrect.  Expected " + str(expected) + " but got " + str(ans))
+    # Presents Menu Options
+    print("Please select a country\n"   + \
+          "A. USA\n"                    + \
+          "B. Meixco\n"                 + \
+          "C. UK\n"                     + \
+          "D. Romania\n"                + \
+          "E. Korea\n"                  + \
+          "F. France")
 
-    print("Testing convertMtoW(76.2)...")
-    ans = convertWageMtoW(76.2)
-    expected = 62.3316
-    if approximatelyEqual(ans, expected, epsilon):
-        print("Correct!")
-    else:
-        print("Incorrect.  Expected " + str(expected) + " but got " + str(ans))
+    # Sets rate according to country
+    countryRate = countryPick(input("Country (A-F): "))
+    
+    # Checks for invalid country
+    if countryRate == 0:
+        quit
 
-    print("Testing convertMtoW(0)...")
-    ans = convertWageMtoW(0)
-    expected = 0.0
-    if approximatelyEqual(ans, expected, epsilon):
-        print("Correct!")
-    else:
-        print("Incorrect.  Expected " + str(expected) + " but got " + str(ans))
 
 if __name__ == "__main__": main()
