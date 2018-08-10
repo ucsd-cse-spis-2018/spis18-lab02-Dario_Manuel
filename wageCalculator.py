@@ -45,7 +45,6 @@ def recordNumber(prompt):
 
 def convertWageMtoW(mWage, wageGap):
     ratio = 1-wageGap
-    # Converted to float to avoid "multiplied by non-int" error
     return ratio*mWage
 
 if __name__ == "__main__": main()
