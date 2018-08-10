@@ -1,10 +1,25 @@
 # wageCalculator.py
-def convertWageMtoW(mWage, wageGap):
-    ratio = 1-wageGap
-    return ratio*mWage
+def main():
+    """ Presents Menu Options """
+    print("Please select a country\n"   + \
+          "A. USA\n"                    + \
+          "B. Meixco\n"                 + \
+          "C. UK\n"                     + \
+          "D. Romania\n"                + \
+          "E. Korea\n"                  + \
+          "F. France")
 
+    # Sets rate according to country
+    countryRate = countryPick(input("Country (A-F): "))
+    
+    # Prompts for a number entry
+    maleWage = recordNumber("\nPlease enter the male wage: $ ") 
+
+    femWage = convertWageMtoW(maleWage, countryRate)
+    print("\nThe female wage in that country is $ " + str(femWage))
 
 def countryPick(country):
+"""  Returns country wage gap, and rejects invalid country entries """
     if   country == "A":
         return .1817
     elif country == "B":
@@ -18,30 +33,19 @@ def countryPick(country):
     elif country == "F":
         return .0987
     else:
-        print("Please Pick A Country")
-        return 0
+        print("Please pick a country\n")
+        exit()
 
+def recordNumber(prompt):
+    try:
+        return float(input(prompt))
+    except ValueError:
+        print("That is not a valid number\n")
+        exit()
 
-def main():
-    # Presents Menu Options
-    print("Please select a country\n"   + \
-          "A. USA\n"                    + \
-          "B. Meixco\n"                 + \
-          "C. UK\n"                     + \
-          "D. Romania\n"                + \
-          "E. Korea\n"                  + \
-          "F. France")
-
-    # Sets rate according to country
-    countryRate = countryPick(input("Country (A-F): "))
-    
-    # Checks for invalid country
-    if countryRate == 0:
-        quit
-    
-    maleWage = input("Please enter male wage: ")
-    
-    femWage = convertWageMtoW(maleWage, countryRate)
-    print("The female wage in that country is " + femWage)
+def convertWageMtoW(mWage, wageGap):
+    ratio = 1-wageGap
+    # Converted to float to avoid "multiplied by non-int" error
+    return ratio*mWage
 
 if __name__ == "__main__": main()
